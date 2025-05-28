@@ -1,24 +1,53 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package edu.progavud.taller3.control;
 
 import edu.progavud.taller3.vista.VentanaPrincipal;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
  * @author a
  */
-public class Fachada {
+public class Fachada implements ActionListener{
     private ControlPrincipal cPrincipal;
     private VentanaPrincipal vPrincipal;
 
     public Fachada(ControlPrincipal cPrincipal) {
         this.cPrincipal = cPrincipal;
         this.vPrincipal = new VentanaPrincipal(this);
+        
+        
+        this.vPrincipal.vPrincipalBtnSalir.addActionListener(this);
+        this.vPrincipal.vPrincipalBtnImpulsar.addActionListener(this);
+        this.vPrincipal.vPrincipalBtnIniciar.addActionListener(this);
+        this.vPrincipal.vPrincipalBtnAgregarCorredor.addActionListener(this);
+        this.vPrincipal.vPrincipalBtnAccidente.addActionListener(this);
+        
     }
 
+    
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if ("salir".equals(e.getActionCommand())) {
+            vPrincipal.setVisible(false);
+            vPrincipal.dispose();
+        }
+        if ("inicia".equals(e.getActionCommand())) {
+            
+        }
+        if ("agregaCorredor".equals(e.getActionCommand())) {
+            
+        }
+        if ("accidente".equals(e.getActionCommand())) {
+            
+        }
+        if ("impulsar".equals(e.getActionCommand())) {
+            
+        }
+    }
+    
     public VentanaPrincipal getvPrincipal() {
         return vPrincipal;
     }
@@ -26,8 +55,6 @@ public class Fachada {
     public void setvPrincipal(VentanaPrincipal vPrincipal) {
         this.vPrincipal = vPrincipal;
     }
-    
-    
     
     
     
