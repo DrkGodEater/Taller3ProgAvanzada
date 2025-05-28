@@ -1,6 +1,7 @@
 package edu.progavud.taller3.vista;
 
 import edu.progavud.taller3.control.Fachada;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -10,6 +11,7 @@ import javax.swing.JOptionPane;
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     private Fachada fachada;
+    private JLabel labelsCorredores[]= new JLabel[5];
     
     public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje);
@@ -21,6 +23,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal(Fachada fachada) {
         initComponents();
         this.fachada = fachada;
+        labelsCorredores[0]=vPrincipalLblCorredor1;
+        labelsCorredores[1]=vPrincipalLblCorredor2;
+        labelsCorredores[2]=vPrincipalLblCorredor3;
+        labelsCorredores[3]=vPrincipalLblCorredor4;
+        labelsCorredores[4]=vPrincipalLblCorredor5;
+    }
+    
+    public void ocultarPanelGanador(){
+        this.vPrincipalLblGanador.setVisible(false);
     }
 
     
@@ -30,6 +41,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        vPrincipalLblGanador = new javax.swing.JLabel();
         vPrincipalLblCorredor5 = new javax.swing.JLabel();
         vPrincipalLblCorredor3 = new javax.swing.JLabel();
         vPrincipalLblCorredor4 = new javax.swing.JLabel();
@@ -49,25 +61,36 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jPanel2.setLayout(null);
 
+        vPrincipalLblGanador.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        vPrincipalLblGanador.setForeground(new java.awt.Color(255, 255, 255));
+        vPrincipalLblGanador.setText("Gano Tal");
+        jPanel2.add(vPrincipalLblGanador);
+        vPrincipalLblGanador.setBounds(390, 30, 230, 40);
+
+        vPrincipalLblCorredor5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/progavud/taller3/img/5_1.png"))); // NOI18N
         vPrincipalLblCorredor5.setText("jLabel2");
         jPanel2.add(vPrincipalLblCorredor5);
-        vPrincipalLblCorredor5.setBounds(0, 100, 70, 70);
+        vPrincipalLblCorredor5.setBounds(0, 100, 80, 70);
 
+        vPrincipalLblCorredor3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/progavud/taller3/img/3_1.png"))); // NOI18N
         vPrincipalLblCorredor3.setText("jLabel2");
         jPanel2.add(vPrincipalLblCorredor3);
-        vPrincipalLblCorredor3.setBounds(0, 270, 70, 70);
+        vPrincipalLblCorredor3.setBounds(0, 270, 80, 70);
 
+        vPrincipalLblCorredor4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/progavud/taller3/img/4_1.png"))); // NOI18N
         vPrincipalLblCorredor4.setText("jLabel2");
         jPanel2.add(vPrincipalLblCorredor4);
-        vPrincipalLblCorredor4.setBounds(0, 190, 70, 70);
+        vPrincipalLblCorredor4.setBounds(0, 190, 80, 70);
 
+        vPrincipalLblCorredor2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/progavud/taller3/img/2_1.png"))); // NOI18N
         vPrincipalLblCorredor2.setText("jLabel2");
         jPanel2.add(vPrincipalLblCorredor2);
-        vPrincipalLblCorredor2.setBounds(0, 350, 70, 70);
+        vPrincipalLblCorredor2.setBounds(0, 350, 80, 70);
 
+        vPrincipalLblCorredor1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/progavud/taller3/img/1_1.png"))); // NOI18N
         vPrincipalLblCorredor1.setText("jLabel2");
         jPanel2.add(vPrincipalLblCorredor1);
-        vPrincipalLblCorredor1.setBounds(0, 430, 70, 70);
+        vPrincipalLblCorredor1.setBounds(0, 430, 80, 70);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/progavud/taller3/img/flipped_resized_image.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -124,7 +147,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(327, 327, 327)
+                        .addGap(330, 330, 330)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -177,5 +200,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public javax.swing.JLabel vPrincipalLblCorredor3;
     public javax.swing.JLabel vPrincipalLblCorredor4;
     public javax.swing.JLabel vPrincipalLblCorredor5;
+    public javax.swing.JLabel vPrincipalLblGanador;
     // End of variables declaration//GEN-END:variables
 }
