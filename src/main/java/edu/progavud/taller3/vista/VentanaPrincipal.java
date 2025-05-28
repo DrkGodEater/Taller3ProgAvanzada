@@ -19,6 +19,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 }
 
     public VentanaPrincipal(Fachada fachada) {
+        initComponents();
         this.fachada = fachada;
     }
 

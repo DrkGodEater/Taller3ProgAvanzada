@@ -4,6 +4,10 @@
  */
 package edu.progavud.taller3.control;
 
+import edu.progavud.taller3.modelo.Corredor;
+import java.util.ArrayList;
+import javax.swing.SwingUtilities;
+
 
 
 /**
@@ -16,25 +20,40 @@ public class ControlPrincipal {
     
     
     public void empiezaLaCarrera() {
-        Thread thread = new Thread(this.cCorredor.crearCorredor("Usain Bolt", 100));
-        Thread thread2 = new Thread(this.cCorredor.crearCorredor("Periquin", 1000));
-        thread.start();
-        thread2.start();
-        try {
-        thread.join();
-        thread2.join();
-        }catch(InterruptedException itex) {
-            //Decir Algo bue, igual nunca va a pasar
+        ArrayList<Corredor> corredores = this.cCorredor.getCorredores();
+        if(!corredores.isEmpty()) {
+        ArrayList<Thread> threads = new ArrayList<>();
+        for(int i = 0; i < corredores.size(); i++) {
+            threads.add(new Thread(corredores.get(i)));
+            threads.get(i).start();
         }
-        
+        try {
+        for(int i = 0; i < threads.size(); i++) {
+            threads.get(i).join();
+        }
+        }catch(InterruptedException itex) {
+            this.fachada.getvPrincipal().mostrarMensaje("Se ha parado la ejecucion");
+        }
+        this.fachada.getvPrincipal().mostrarMensaje("La carrera se ha terminado");
+        }
+        else {
+            this.fachada.getvPrincipal().mostrarMensaje("No puedes iniciar una carrera sin ningun corredor");
+        } 
+    }
+    
+    public void agregarCorredorALaPista(String nombre, int posicionY) {
+        this.cCorredor.crearCorredor(nombre, posicionY);
     }
     public void anunciarGanador() {
-        this.fachada.getvPrincipal().mostrarMensaje("El ganador es: " + this.cCorredor.quienEsElGanador());
+        String ganador = this.cCorredor.quienEsElGanador();
+        if(ganador != null) {
+            this.fachada.getvPrincipal().mostrarMensaje("¡El ganador es: " + ganador + "!");
+        }
     }
+    
     public ControlPrincipal() {
         this.fachada = new Fachada(this);
         this.cCorredor = new ControlCorredor(this);
-        empiezaLaCarrera();
     }
     
 }

@@ -49,6 +49,14 @@ public class ControlCorredor implements CarreraObserver {
         return corredor;
     }
 
+    public ArrayList<Corredor> getCorredores() {
+        return corredores;
+    }
+
+    public void setCorredores(ArrayList<Corredor> corredores) {
+        this.corredores = corredores;
+    }
+
     @Override
     public void corredorLlego(String nombre) {
         this.cPrincipal.anunciarGanador();

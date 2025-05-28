@@ -57,10 +57,11 @@ public class Corredor implements Runnable {
 
     @Override
     public void run() {
-        while(posicionX < 200) {
+        while(this.posicionX < 50 && ganadorDeLaCarrera == null) {
         
         Random random = new Random();
-        this.setPosicionX(posicionX + 5);
+        this.setPosicionX(this.posicionX + 5);
+        System.out.println(this.nombre + " ha avanzado: " + this.posicionX);
         try {
             Thread.sleep(random.nextInt(3000) + 1000);
         }catch(InterruptedException ex) {
@@ -71,7 +72,7 @@ public class Corredor implements Runnable {
             ganadorDeLaCarrera = this.nombre;
             this.observer.corredorLlego(ganadorDeLaCarrera);
         }
-
+        
     }
   
     

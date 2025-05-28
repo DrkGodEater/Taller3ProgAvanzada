@@ -17,7 +17,7 @@ public class Fachada implements ActionListener{
         this.cPrincipal = cPrincipal;
         this.vPrincipal = new VentanaPrincipal(this);
         
-        
+        this.vPrincipal.setVisible(true);
         this.vPrincipal.vPrincipalBtnSalir.addActionListener(this);
         this.vPrincipal.vPrincipalBtnImpulsar.addActionListener(this);
         this.vPrincipal.vPrincipalBtnIniciar.addActionListener(this);
@@ -35,10 +35,13 @@ public class Fachada implements ActionListener{
             vPrincipal.dispose();
         }
         if ("inicia".equals(e.getActionCommand())) {
-            
+            this.cPrincipal.empiezaLaCarrera();
         }
         if ("agregaCorredor".equals(e.getActionCommand())) {
-            
+            this.cPrincipal.agregarCorredorALaPista("Usain Bolt", 10);
+            this.cPrincipal.agregarCorredorALaPista("Periquito", 1000);
+            this.cPrincipal.agregarCorredorALaPista("Pericote", 1000);
+            this.cPrincipal.agregarCorredorALaPista("Alex", 1000);
         }
         if ("accidente".equals(e.getActionCommand())) {
             
