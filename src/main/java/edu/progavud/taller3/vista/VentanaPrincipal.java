@@ -23,6 +23,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal(Fachada fachada) {
         initComponents();
         this.fachada = fachada;
+        this.vPrincipalLblGanador.setVisible(false);
         labelsCorredores[0]=vPrincipalLblCorredor1;
         labelsCorredores[1]=vPrincipalLblCorredor2;
         labelsCorredores[2]=vPrincipalLblCorredor3;
@@ -32,6 +33,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
     public void ocultarPanelGanador(){
         this.vPrincipalLblGanador.setVisible(false);
+        
+        
+    }
+    public void mostrarGanador(String msj){
+        this.vPrincipalLblGanador.setVisible(true);
+        this.vPrincipalLblGanador.setText(msj);
     }
 
     
@@ -65,7 +72,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         vPrincipalLblGanador.setForeground(new java.awt.Color(255, 255, 255));
         vPrincipalLblGanador.setText("Gano Tal");
         jPanel2.add(vPrincipalLblGanador);
-        vPrincipalLblGanador.setBounds(390, 30, 230, 40);
+        vPrincipalLblGanador.setBounds(340, 30, 310, 40);
 
         vPrincipalLblCorredor5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/progavud/taller3/img/5_1.png"))); // NOI18N
         vPrincipalLblCorredor5.setText("jLabel2");
@@ -142,14 +149,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(vPrincipalBtnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(330, 330, 330)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(331, 331, 331))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -35,6 +35,8 @@ public class Fachada implements ActionListener{
             vPrincipal.dispose();
         }
         if ("inicia".equals(e.getActionCommand())) {
+            this.vPrincipal.ocultarPanelGanador();
+            this.cPrincipal.reiniciarCarrera();
             this.cPrincipal.empiezaLaCarrera();
         }
         if ("agregaCorredor".equals(e.getActionCommand())) {
