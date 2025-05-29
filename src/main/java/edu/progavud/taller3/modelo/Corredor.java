@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package edu.progavud.taller3.modelo;
 
 import java.util.Random;
@@ -14,12 +10,14 @@ public class Corredor implements Runnable {
     private String nombre;
     private int posicionX = 0;
     private int posicionY;
+    private int numCorredor;
     private static volatile String ganadorDeLaCarrera = null;
     private CarreraObserver observer;
 
-    public Corredor(String nombre, int posicionY, CarreraObserver observer) {
+    public Corredor(String nombre, int posicionY, int numCorredor, CarreraObserver observer) {
         this.nombre = nombre;
         this.posicionY = posicionY;
+        this.numCorredor = numCorredor;
         this.observer = observer;
     }
 
@@ -47,6 +45,14 @@ public class Corredor implements Runnable {
         this.posicionY = posicionY;
     }
 
+    public int getNumCorredor() {
+        return numCorredor;
+    }
+
+    public void setNumCorredor(int numCorredor) {
+        this.numCorredor = numCorredor;
+    }
+
     public static String getGanadorDeLaCarrera() {
         return ganadorDeLaCarrera;
     }
@@ -61,7 +67,7 @@ public class Corredor implements Runnable {
         
         Random random = new Random();
         this.setPosicionX(this.posicionX + 5);
-        System.out.println(this.nombre + " ha avanzado: " + this.posicionX);
+        System.out.println(this.nombre + " (Corredor #" + this.numCorredor + ") ha avanzado: " + this.posicionX);
         try {
             Thread.sleep(random.nextInt(3000) + 1000);
         }catch(InterruptedException ex) {
@@ -74,7 +80,4 @@ public class Corredor implements Runnable {
         }
         
     }
-  
-    
-    
 }

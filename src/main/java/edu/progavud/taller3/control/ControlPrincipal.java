@@ -60,8 +60,35 @@ public class ControlPrincipal {
         } 
     }
     
-    public void agregarCorredorALaPista(String nombre, int posicionY) {
-        this.cCorredor.crearCorredor(nombre, posicionY);
+    public void agregarCorredorALaPista() {
+        if (this.cCorredor.puedeAgregarCorredor()) {
+            String nombre = this.fachada.getvPrincipal().registrarCorredor(this.cCorredor.getCantidadCorredores() + 1);
+            
+            if (nombre != null && !nombre.trim().isEmpty()) {
+                // Calcular posición Y basada en el número de corredor
+                int numCorredor = this.cCorredor.getCantidadCorredores() + 1;
+                int posicionY = getPosicionY(numCorredor);
+                
+                this.cCorredor.crearCorredor(nombre.trim(), posicionY);
+                this.fachada.getvPrincipal().mostrarMensaje("Corredor '" + nombre.trim() + "' agregado como Corredor #" + numCorredor);
+            } else {
+                this.fachada.getvPrincipal().mostrarMensaje("Debe ingresar un nombre válido para el corredor");
+            }
+        } else {
+            this.fachada.getvPrincipal().mostrarMensaje("No se pueden agregar más corredores. Máximo 5 corredores.");
+        }
+    }
+    
+    private int getPosicionY(int numCorredor) {
+        // Calcular posición Y basada en el número de corredor
+        switch(numCorredor) {
+            case 1: return 430; // vPrincipalLblCorredor1
+            case 2: return 350; // vPrincipalLblCorredor2
+            case 3: return 270; // vPrincipalLblCorredor3
+            case 4: return 190; // vPrincipalLblCorredor4
+            case 5: return 100; // vPrincipalLblCorredor5
+            default: return 430;
+        }
     }
     
     public void anunciarGanador() {

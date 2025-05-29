@@ -13,9 +13,11 @@ public class ControlCorredor implements CarreraObserver {
     private ControlPrincipal cPrincipal;
     private ArrayList<Corredor> corredores;
     private Corredor corredor;
+    private int contadorCorredores;
     
     public Corredor crearCorredor(String nombre, int posicionY) {
-        corredor = new Corredor(nombre,posicionY,this);
+        contadorCorredores++;
+        corredor = new Corredor(nombre, posicionY, contadorCorredores, this);
         this.corredores.add(corredor);
         return corredor;
     }
@@ -34,11 +36,34 @@ public class ControlCorredor implements CarreraObserver {
     public String quienEsElGanador() {
         return Corredor.getGanadorDeLaCarrera();
     }
+    
+    public boolean puedeAgregarCorredor() {
+        return this.corredores.size() < 5; // Máximo 5 corredores
+    }
+    
+    public int getCantidadCorredores() {
+        return this.corredores.size();
+    }
 
     public ControlCorredor(ControlPrincipal cPrincipal) {
         this.corredores = new ArrayList<>();
         this.cPrincipal = cPrincipal;
+        this.contadorCorredores = 0;
         
+        // Crear el primer corredor al inicializar
+        this.crearCorredor("Corredor Default", getYPosition(1));
+    }
+    
+    private int getYPosition(int numCorredor) {
+        // Calcular posición Y basada en el número de corredor
+        switch(numCorredor) {
+            case 1: return 430; // vPrincipalLblCorredor1
+            case 2: return 350; // vPrincipalLblCorredor2
+            case 3: return 270; // vPrincipalLblCorredor3
+            case 4: return 190; // vPrincipalLblCorredor4
+            case 5: return 100; // vPrincipalLblCorredor5
+            default: return 430;
+        }
     }
 
     public Corredor getCorredor() {
@@ -57,12 +82,4 @@ public class ControlCorredor implements CarreraObserver {
     public void corredorLlego(String nombre) {
         this.cPrincipal.anunciarGanador();
     }
-    
-    
-    
-   
-
-
-    
-    
 }

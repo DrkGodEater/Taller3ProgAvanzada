@@ -1,4 +1,3 @@
-
 package edu.progavud.taller3.control;
 
 import edu.progavud.taller3.vista.VentanaPrincipal;
@@ -23,10 +22,7 @@ public class Fachada implements ActionListener{
         this.vPrincipal.vPrincipalBtnIniciar.addActionListener(this);
         this.vPrincipal.vPrincipalBtnAgregarCorredor.addActionListener(this);
         this.vPrincipal.vPrincipalBtnAccidente.addActionListener(this);
-        
     }
-
-    
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -40,10 +36,7 @@ public class Fachada implements ActionListener{
             this.cPrincipal.empiezaLaCarrera();
         }
         if ("agregaCorredor".equals(e.getActionCommand())) {
-            this.cPrincipal.agregarCorredorALaPista("Usain Bolt", 10);
-            this.cPrincipal.agregarCorredorALaPista("Periquito", 1000);
-            this.cPrincipal.agregarCorredorALaPista("Pericote", 1000);
-            this.cPrincipal.agregarCorredorALaPista("Alex", 1000);
+            this.cPrincipal.agregarCorredorALaPista();
         }
         if ("accidente".equals(e.getActionCommand())) {
             
@@ -60,7 +53,4 @@ public class Fachada implements ActionListener{
     public void setvPrincipal(VentanaPrincipal vPrincipal) {
         this.vPrincipal = vPrincipal;
     }
-    
-    
-    
 }
