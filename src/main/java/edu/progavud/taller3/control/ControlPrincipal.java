@@ -2,6 +2,7 @@ package edu.progavud.taller3.control;
 
 import edu.progavud.taller3.modelo.Corredor;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.SwingUtilities;
 
 /**
@@ -9,6 +10,7 @@ import javax.swing.SwingUtilities;
  * @author a
  */
 public class ControlPrincipal {
+    private ControlCarrera cCarrera;
     private Fachada fachada;
     private ControlCorredor cCorredor;
     
@@ -30,8 +32,8 @@ public class ControlPrincipal {
                 
                 // Crear ControlCarrera para cada corredor y empezar los hilos
                 for(int i = 0; i < corredores.size(); i++) {
-                    ControlCarrera controlCarrera = new ControlCarrera(corredores.get(i), this.cCorredor);
-                    Thread thread = new Thread(controlCarrera);
+                    this.cCarrera = new ControlCarrera(i, this.cCorredor,this);
+                    Thread thread = new Thread(this.cCarrera);
                     threads.add(thread);
                     thread.start();
                 }
@@ -61,7 +63,12 @@ public class ControlPrincipal {
             this.fachada.getvPrincipal().mostrarMensaje("No puedes iniciar una carrera sin ningún corredor");
         } 
     }
-    
+    public void impulsarYMostrarAQueCorredor() {
+       Random random = new Random();
+       int numDeJugadorRandom = random.nextInt(this.cCorredor.getCantidadCorredores());
+       this.fachada.getvPrincipal().mostrarMensaje("El jugador número: " + (numDeJugadorRandom + 1) + " Ha recibido un impulso");
+       this.cCarrera.impulsarJugadorRandom(numDeJugadorRandom);
+    }
     public void agregarCorredorALaPista() {
         if (this.cCorredor.puedeAgregarCorredor()) {
             String nombre = this.fachada.getvPrincipal().registrarCorredor(this.cCorredor.getCantidadCorredores() + 1);
@@ -80,7 +87,9 @@ public class ControlPrincipal {
             this.fachada.getvPrincipal().mostrarMensaje("No se pueden agregar más corredores. Máximo 5 corredores.");
         }
     }
-    
+    public void repintarElLabel(int numero, int locationX, int locationY) {
+        this.fachada.getvPrincipal().repintarLabel(numero, locationX, locationY);
+    }
     private int getPosicionY(int numCorredor) {
         // Calcular posición Y basada en el número de corredor
         switch(numCorredor) {
@@ -113,6 +122,8 @@ public class ControlPrincipal {
             corredor.setPosicionX(0);
         }
     }
+    
+    
     
     public ControlPrincipal() {
         this.fachada = new Fachada(this);

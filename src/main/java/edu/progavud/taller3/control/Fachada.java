@@ -42,7 +42,7 @@ public class Fachada implements ActionListener{
             
         }
         if ("impulsar".equals(e.getActionCommand())) {
-            
+            this.cPrincipal.impulsarYMostrarAQueCorredor();
         }
     }
     

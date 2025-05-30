@@ -12,6 +12,7 @@ public class Corredor {
     private int posicionY;
     private int numCorredor;
     private static volatile String ganadorDeLaCarrera = null;
+    private int victorias = 0;
 
     public Corredor(String nombre, int posicionY, int numCorredor) {
         this.nombre = nombre;
@@ -53,6 +54,14 @@ public class Corredor {
 
     public static String getGanadorDeLaCarrera() {
         return ganadorDeLaCarrera;
+    }
+
+    public int getVictorias() {
+        return victorias;
+    }
+
+    public void setVictorias(int victorias) {
+        this.victorias = victorias;
     }
 
     public static void setGanadorDeLaCarrera(String ganadorDeLaCarrera) {

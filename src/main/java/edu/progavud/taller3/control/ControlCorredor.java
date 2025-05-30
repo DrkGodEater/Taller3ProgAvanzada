@@ -13,20 +13,18 @@ public class ControlCorredor implements CarreraObserver {
     private ControlPrincipal cPrincipal;
     private ArrayList<Corredor> corredores;
     private Corredor corredor;
-    private int contadorCorredores;
     
     public Corredor crearCorredor(String nombre, int posicionY) {
-        contadorCorredores++;
-        corredor = new Corredor(nombre, posicionY, contadorCorredores);
+        corredor = new Corredor(nombre, posicionY, corredores.size());
         this.corredores.add(corredor);
         return corredor;
     }
     
-    public Corredor buscarCorredor(String nombre) {
+    public Corredor buscarCorredor(int numero) {
         Iterator iterator = this.corredores.iterator();
         while(iterator.hasNext()) {
             Corredor corredorPivot = (Corredor) iterator.next();
-            if(corredorPivot.getNombre().equals(nombre)) {
+            if(corredorPivot.getNumCorredor() == numero) {
                 return corredorPivot;
             }
         }
@@ -48,7 +46,6 @@ public class ControlCorredor implements CarreraObserver {
     public ControlCorredor(ControlPrincipal cPrincipal) {
         this.corredores = new ArrayList<>();
         this.cPrincipal = cPrincipal;
-        this.contadorCorredores = 0;
         
         // Crear el primer corredor al inicializar
         this.crearCorredor("Usain Bolt", getYPosition(1));

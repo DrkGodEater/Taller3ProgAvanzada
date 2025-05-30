@@ -31,6 +31,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         labelsCorredores[4]=vPrincipalLblCorredor5;
     }
     
+    
+    public void repintarLabel(int numero, int posicionX, int posicionY) {
+        labelsCorredores[numero].setLocation(posicionX,posicionY);
+        labelsCorredores[numero].repaint();
+    }
     public void ocultarPanelGanador(){
         this.vPrincipalLblGanador.setVisible(false);
         
@@ -72,7 +77,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         vPrincipalLblGanador.setForeground(new java.awt.Color(255, 255, 255));
         vPrincipalLblGanador.setText("Gano Tal");
         jPanel2.add(vPrincipalLblGanador);
-        vPrincipalLblGanador.setBounds(340, 30, 310, 40);
+        vPrincipalLblGanador.setBounds(170, 30, 630, 40);
 
         vPrincipalLblCorredor5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/progavud/taller3/img/processed_gif_1.gif"))); // NOI18N
         vPrincipalLblCorredor5.setText("jLabel2");
@@ -154,7 +159,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(331, 331, 331))
         );
         jPanel1Layout.setVerticalGroup(
