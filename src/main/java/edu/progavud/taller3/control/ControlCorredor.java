@@ -51,7 +51,7 @@ public class ControlCorredor implements CarreraObserver {
         this.contadorCorredores = 0;
         
         // Crear el primer corredor al inicializar
-        this.crearCorredor("Corredor Default", getYPosition(1));
+        this.crearCorredor("Usain Bolt", getYPosition(1));
     }
     
     private int getYPosition(int numCorredor) {
