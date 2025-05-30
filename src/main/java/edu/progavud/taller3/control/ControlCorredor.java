@@ -1,14 +1,14 @@
 package edu.progavud.taller3.control;
 
+
+import edu.progavud.taller3.control.ControlPrincipal;
 import edu.progavud.taller3.modelo.CarreraObserver;
 import edu.progavud.taller3.modelo.Corredor;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/**
- *
- * @author carlosmamut1
- */
+
+
 public class ControlCorredor implements CarreraObserver {
     private ControlPrincipal cPrincipal;
     private ArrayList<Corredor> corredores;
@@ -17,7 +17,7 @@ public class ControlCorredor implements CarreraObserver {
     
     public Corredor crearCorredor(String nombre, int posicionY) {
         contadorCorredores++;
-        corredor = new Corredor(nombre, posicionY, contadorCorredores, this);
+        corredor = new Corredor(nombre, posicionY, contadorCorredores);
         this.corredores.add(corredor);
         return corredor;
     }
@@ -44,7 +44,7 @@ public class ControlCorredor implements CarreraObserver {
     public int getCantidadCorredores() {
         return this.corredores.size();
     }
-
+    
     public ControlCorredor(ControlPrincipal cPrincipal) {
         this.corredores = new ArrayList<>();
         this.cPrincipal = cPrincipal;
@@ -65,19 +65,19 @@ public class ControlCorredor implements CarreraObserver {
             default: return 430;
         }
     }
-
+    
     public Corredor getCorredor() {
         return corredor;
     }
-
+    
     public ArrayList<Corredor> getCorredores() {
         return corredores;
     }
-
+    
     public void setCorredores(ArrayList<Corredor> corredores) {
         this.corredores = corredores;
     }
-
+    
     @Override
     public void corredorLlego(String nombre) {
         this.cPrincipal.anunciarGanador();

@@ -6,19 +6,17 @@ import java.util.Random;
  *
  * @author a
  */
-public class Corredor implements Runnable {
+public class Corredor {
     private String nombre;
     private int posicionX = 0;
     private int posicionY;
     private int numCorredor;
     private static volatile String ganadorDeLaCarrera = null;
-    private CarreraObserver observer;
 
-    public Corredor(String nombre, int posicionY, int numCorredor, CarreraObserver observer) {
+    public Corredor(String nombre, int posicionY, int numCorredor) {
         this.nombre = nombre;
         this.posicionY = posicionY;
         this.numCorredor = numCorredor;
-        this.observer = observer;
     }
 
     public String getNombre() {
@@ -61,23 +59,4 @@ public class Corredor implements Runnable {
         Corredor.ganadorDeLaCarrera = ganadorDeLaCarrera;
     }
 
-    @Override
-    public void run() {
-        while(this.posicionX < 50 && ganadorDeLaCarrera == null) {
-        
-        Random random = new Random();
-        this.setPosicionX(this.posicionX + 5);
-        System.out.println(this.nombre + " (Corredor #" + this.numCorredor + ") ha avanzado: " + this.posicionX);
-        try {
-            Thread.sleep(random.nextInt(3000) + 1000);
-        }catch(InterruptedException ex) {
-            System.exit(0);
-        }
-        }
-        if(ganadorDeLaCarrera == null) {
-            ganadorDeLaCarrera = this.nombre;
-            this.observer.corredorLlego(ganadorDeLaCarrera);
-        }
-        
-    }
 }

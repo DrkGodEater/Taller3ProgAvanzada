@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.swing.SwingUtilities;
 
 /**
- *
+ * Main control class
  * @author a
  */
 public class ControlPrincipal {
@@ -28,16 +28,18 @@ public class ControlPrincipal {
             Thread carreraThread = new Thread(() -> {
                 ArrayList<Thread> threads = new ArrayList<>();
                 
-                // Crear y empezar los hilos de los corredores
+                // Crear ControlCarrera para cada corredor y empezar los hilos
                 for(int i = 0; i < corredores.size(); i++) {
-                    threads.add(new Thread(corredores.get(i)));
-                    threads.get(i).start();
+                    ControlCarrera controlCarrera = new ControlCarrera(corredores.get(i), this.cCorredor);
+                    Thread thread = new Thread(controlCarrera);
+                    threads.add(thread);
+                    thread.start();
                 }
                 
                 try {
                     // Esperar a que terminen todos los corredores
-                    for(int i = 0; i < threads.size(); i++) {
-                        threads.get(i).join();
+                    for(Thread thread : threads) {
+                        thread.join();
                     }
                 } catch(InterruptedException itex) {
                     // Actualizar UI desde el EDT
