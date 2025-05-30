@@ -74,27 +74,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel2.add(vPrincipalLblGanador);
         vPrincipalLblGanador.setBounds(340, 30, 310, 40);
 
-        vPrincipalLblCorredor5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/progavud/taller3/img/5_1.png"))); // NOI18N
+        vPrincipalLblCorredor5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/progavud/taller3/img/processed_gif_1.gif"))); // NOI18N
         vPrincipalLblCorredor5.setText("jLabel2");
         jPanel2.add(vPrincipalLblCorredor5);
         vPrincipalLblCorredor5.setBounds(0, 100, 80, 70);
 
-        vPrincipalLblCorredor3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/progavud/taller3/img/3_1.png"))); // NOI18N
+        vPrincipalLblCorredor3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/progavud/taller3/img/processed_gif_3.gif"))); // NOI18N
         vPrincipalLblCorredor3.setText("jLabel2");
         jPanel2.add(vPrincipalLblCorredor3);
         vPrincipalLblCorredor3.setBounds(0, 270, 80, 70);
 
-        vPrincipalLblCorredor4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/progavud/taller3/img/4_1.png"))); // NOI18N
+        vPrincipalLblCorredor4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/progavud/taller3/img/processed_gif_2.gif"))); // NOI18N
         vPrincipalLblCorredor4.setText("jLabel2");
         jPanel2.add(vPrincipalLblCorredor4);
         vPrincipalLblCorredor4.setBounds(0, 190, 80, 70);
 
-        vPrincipalLblCorredor2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/progavud/taller3/img/2_1.png"))); // NOI18N
+        vPrincipalLblCorredor2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/progavud/taller3/img/perrorosa-ezgif.com-effects.gif"))); // NOI18N
         vPrincipalLblCorredor2.setText("jLabel2");
         jPanel2.add(vPrincipalLblCorredor2);
         vPrincipalLblCorredor2.setBounds(0, 350, 80, 70);
 
-        vPrincipalLblCorredor1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/progavud/taller3/img/1_1.png"))); // NOI18N
+        vPrincipalLblCorredor1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/progavud/taller3/img/negro.gif"))); // NOI18N
         vPrincipalLblCorredor1.setText("jLabel2");
         jPanel2.add(vPrincipalLblCorredor1);
         vPrincipalLblCorredor1.setBounds(0, 430, 80, 70);
