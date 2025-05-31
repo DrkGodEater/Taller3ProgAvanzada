@@ -13,6 +13,7 @@ public class Corredor {
     private int numCorredor;
     private static volatile String ganadorDeLaCarrera = null;
     private int victorias = 0;
+    private boolean accidentado = false;
 
     public Corredor(String nombre, int posicionY, int numCorredor) {
         this.nombre = nombre;
@@ -68,4 +69,13 @@ public class Corredor {
         Corredor.ganadorDeLaCarrera = ganadorDeLaCarrera;
     }
 
+    public boolean isAccidentado() {
+        return accidentado;
+    }
+
+    public void setAccidentado(boolean accidentado) {
+        this.accidentado = accidentado;
+    }
+
+    
 }

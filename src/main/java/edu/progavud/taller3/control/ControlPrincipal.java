@@ -1,9 +1,12 @@
 package edu.progavud.taller3.control;
 
 import edu.progavud.taller3.modelo.Corredor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 /**
  * Main control class
@@ -13,8 +16,41 @@ public class ControlPrincipal {
     private ControlCarrera cCarrera;
     private Fachada fachada;
     private ControlCorredor cCorredor;
+    private int segundosQuePasaron;
     
+    
+    
+    
+    
+    
+    
+    
+    public void mostrarMaxGanador() {
+        String maxGanador = "";
+        int maximasVictorias = 0;
+        ArrayList<Corredor> corredores = this.cCorredor.getCorredores();
+        for(int i = 0; i < corredores.size(); i++) {
+            if(maximasVictorias < corredores.get(i).getVictorias() || maxGanador.equals("")) {
+                maxGanador = corredores.get(i).getNombre();
+                maximasVictorias = corredores.get(i).getVictorias();
+            }
+            else if(maximasVictorias == corredores.get(i).getVictorias()) {
+                maxGanador = maxGanador + " y " + corredores.get(i).getNombre();
+            }
+        }
+        this.fachada.getvPrincipal().mostrarMensaje("Maximo Ganador(s): " + maxGanador + 
+                                                    "\nVictorias: " + maximasVictorias);
+    }
     public void empiezaLaCarrera() {
+        segundosQuePasaron = 0;
+        Timer timer = new Timer(1000,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                 segundosQuePasaron+=1;
+            }
+        
+    });
+
         ArrayList<Corredor> corredores = this.cCorredor.getCorredores();
         
         if(!corredores.isEmpty()) {
@@ -27,6 +63,7 @@ public class ControlPrincipal {
             }
             
             // Ejecutar la carrera en un hilo separado para no bloquear la UI
+            timer.start();
             Thread carreraThread = new Thread(() -> {
                 ArrayList<Thread> threads = new ArrayList<>();
                 
@@ -53,7 +90,9 @@ public class ControlPrincipal {
                 
                 // Actualizar UI desde el EDT cuando termine la carrera
                 SwingUtilities.invokeLater(() -> {
+                    
                     this.fachada.getvPrincipal().mostrarMensaje("La carrera se ha terminado");
+                    timer.stop();
                 });
             });
             
@@ -69,7 +108,13 @@ public class ControlPrincipal {
        this.fachada.getvPrincipal().mostrarMensaje("El jugador número: " + (numDeJugadorRandom + 1) + " Ha recibido un impulso");
        this.cCarrera.impulsarJugadorRandom(numDeJugadorRandom);
     }
-    public void agregarCorredorALaPista() {
+    public void accidentarYMostrarAQueCorredor() {
+    Random random = new Random();
+    int numDeJugadorRandom = random.nextInt(this.cCorredor.getCantidadCorredores());
+    this.fachada.getvPrincipal().mostrarMensaje("El jugador número: " + (numDeJugadorRandom + 1) + " Ha tenido un accidente y se detendrá por 5 segundos");
+    this.cCarrera.accidentarJugadorRandom(numDeJugadorRandom);
+    }
+    public int agregarCorredorALaPista() {
         if (this.cCorredor.puedeAgregarCorredor()) {
             String nombre = this.fachada.getvPrincipal().registrarCorredor(this.cCorredor.getCantidadCorredores() + 1);
             
@@ -86,6 +131,7 @@ public class ControlPrincipal {
         } else {
             this.fachada.getvPrincipal().mostrarMensaje("No se pueden agregar más corredores. Máximo 5 corredores.");
         }
+        return this.cCorredor.getCorredor().getNumCorredor();
     }
     public void repintarElLabel(int numero, int locationX, int locationY) {
         this.fachada.getvPrincipal().repintarLabel(numero, locationX, locationY);
@@ -107,7 +153,7 @@ public class ControlPrincipal {
         if(ganador != null) {
             // Asegurar que la actualización de UI se haga en el EDT
             SwingUtilities.invokeLater(() -> {
-                this.fachada.getvPrincipal().mostrarGanador("El ganador es: " + ganador);
+                this.fachada.getvPrincipal().mostrarGanador("El ganador es: " + ganador + " (" + this.segundosQuePasaron + " segs)");
             });
         }
     }

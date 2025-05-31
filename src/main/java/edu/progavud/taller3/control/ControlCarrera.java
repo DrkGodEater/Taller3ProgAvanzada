@@ -18,7 +18,7 @@ public class ControlCarrera implements Runnable {
     private static final int META = 900;
     private static final int AVANCE_POR_PASO = 20;
     private static final int TIEMPO_MIN_ESPERA = 500;
-    private static final int TIEMPO_MAX_ESPERA = 1500;
+    private static final int TIEMPO_MAX_ESPERA = 1000;
     
     public ControlCarrera(int numCorredor, ControlCorredor cCorredor, ControlPrincipal cPrincipal) {
         this.cPrincipal = cPrincipal;
@@ -32,6 +32,23 @@ public class ControlCarrera implements Runnable {
         corredorSeleccionado.setPosicionX(corredorSeleccionado.getPosicionX() + impulsoRandom);
         this.cPrincipal.repintarElLabel(corredorSeleccionado.getNumCorredor(), corredorSeleccionado.getPosicionX(), corredorSeleccionado.getPosicionY());
     }
+   public void accidentarJugadorRandom(int numeroRandom) {
+    Random random = new Random();
+    Corredor corredorSeleccionado = this.cCorredor.getCorredores().get(numeroRandom);
+    corredorSeleccionado.setAccidentado(true);
+    Thread accidenteThread = new Thread(() -> {
+        try {
+            Thread.sleep(random.nextInt(1500) + 1000);
+        } catch (InterruptedException ex) {
+        } finally {
+            // Desmarcar al corredor como accidentado
+            corredorSeleccionado.setAccidentado(false);
+        }
+    });
+    
+    accidenteThread.start();
+}
+    
 
     
 
@@ -44,10 +61,11 @@ public class ControlCarrera implements Runnable {
               Corredor.getGanadorDeLaCarrera() == null) {
             
             // Avanzar el corredor
-            corredorPivot.setPosicionX(corredorPivot.getPosicionX() + AVANCE_POR_PASO);
-            this.cPrincipal.repintarElLabel(corredorPivot.getNumCorredor(), corredorPivot.getPosicionX(), corredorPivot.getPosicionY());
+            if(!corredorPivot.isAccidentado()) {
+                corredorPivot.setPosicionX(corredorPivot.getPosicionX() + AVANCE_POR_PASO);
+                this.cPrincipal.repintarElLabel(corredorPivot.getNumCorredor(), corredorPivot.getPosicionX(), corredorPivot.getPosicionY());
             // Log del progreso
-            
+            }
             try {
                 // Tiempo de espera aleatorio
                 Thread.sleep(random.nextInt(TIEMPO_MAX_ESPERA - TIEMPO_MIN_ESPERA) + TIEMPO_MIN_ESPERA);

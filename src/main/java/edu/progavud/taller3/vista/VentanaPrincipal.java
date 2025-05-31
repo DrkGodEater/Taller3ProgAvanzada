@@ -29,12 +29,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         labelsCorredores[2]=vPrincipalLblCorredor3;
         labelsCorredores[3]=vPrincipalLblCorredor4;
         labelsCorredores[4]=vPrincipalLblCorredor5;
+        labelsCorredores[1].setVisible(false);
+        labelsCorredores[2].setVisible(false);
+        labelsCorredores[3].setVisible(false);
+        labelsCorredores[4].setVisible(false);
+
+       
     }
     
     
     public void repintarLabel(int numero, int posicionX, int posicionY) {
         labelsCorredores[numero].setLocation(posicionX,posicionY);
         labelsCorredores[numero].repaint();
+    }
+    public void mostrarJugador(int numero) {
+        labelsCorredores[numero].setVisible(true);
     }
     public void ocultarPanelGanador(){
         this.vPrincipalLblGanador.setVisible(false);
@@ -77,7 +86,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         vPrincipalLblGanador.setForeground(new java.awt.Color(255, 255, 255));
         vPrincipalLblGanador.setText("Gano Tal");
         jPanel2.add(vPrincipalLblGanador);
-        vPrincipalLblGanador.setBounds(170, 30, 630, 40);
+        vPrincipalLblGanador.setBounds(30, 30, 920, 40);
 
         vPrincipalLblCorredor5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/progavud/taller3/img/processed_gif_1.gif"))); // NOI18N
         vPrincipalLblCorredor5.setText("jLabel2");

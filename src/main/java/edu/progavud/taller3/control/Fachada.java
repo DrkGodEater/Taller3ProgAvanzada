@@ -28,6 +28,7 @@ public class Fachada implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if ("salir".equals(e.getActionCommand())) {
             vPrincipal.setVisible(false);
+            this.cPrincipal.mostrarMaxGanador();
             vPrincipal.dispose();
         }
         if ("inicia".equals(e.getActionCommand())) {
@@ -36,10 +37,10 @@ public class Fachada implements ActionListener{
             this.cPrincipal.empiezaLaCarrera();
         }
         if ("agregaCorredor".equals(e.getActionCommand())) {
-            this.cPrincipal.agregarCorredorALaPista();
+            this.vPrincipal.mostrarJugador(this.cPrincipal.agregarCorredorALaPista());
         }
         if ("accidente".equals(e.getActionCommand())) {
-            
+            this.cPrincipal.accidentarYMostrarAQueCorredor();
         }
         if ("impulsar".equals(e.getActionCommand())) {
             this.cPrincipal.impulsarYMostrarAQueCorredor();
