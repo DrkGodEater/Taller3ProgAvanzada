@@ -5,57 +5,109 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
+ * Ventana principal de la aplicación de carreras que proporciona la interfaz
+ * gráfica para visualizar y controlar la carrera. Maneja la representación
+ * visual de los corredores, la interacción con el usuario a través de botones y
+ * la visualización de mensajes y resultados.
  *
- * @author a
+ * @author Alex M
+ * @author batapop
+ * @author carlosmamut
+ * @version 1.0
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     private Fachada fachada;
-    private JLabel labelsCorredores[]= new JLabel[5];
-    
+    private JLabel labelsCorredores[] = new JLabel[5];
+
+    /**
+     * Muestra un mensaje informativo al usuario mediante un cuadro de diálogo.
+     *
+     * @param mensaje el texto que se mostrará en el cuadro de diálogo
+     */
     public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje);
     }
-    public String registrarCorredor(int numeroCorredor) {
-    return javax.swing.JOptionPane.showInputDialog(null, "Ingrese el nombre del corredor #" + numeroCorredor + ":");
-}
 
+    /**
+     * Solicita al usuario que ingrese el nombre de un corredor específico
+     * mediante un cuadro de diálogo de entrada.
+     *
+     * @param numeroCorredor el número del corredor para el cual se solicita el
+     * nombre
+     * @return el nombre ingresado por el usuario o null si cancela la operación
+     */
+    public String registrarCorredor(int numeroCorredor) {
+        return javax.swing.JOptionPane.showInputDialog(null, "Ingrese el nombre del corredor #" + numeroCorredor + ":");
+    }
+
+    /**
+     * Constructor que inicializa la ventana principal con la fachada
+     * correspondiente. Configura la interfaz gráfica, inicializa el arreglo de
+     * labels de corredores, oculta los corredores no utilizados inicialmente y
+     * configura la visibilidad del panel de ganador.
+     *
+     * @param fachada la fachada que actuará como controlador de eventos para
+     * esta ventana
+     */
     public VentanaPrincipal(Fachada fachada) {
         initComponents();
         this.fachada = fachada;
         this.vPrincipalLblGanador.setVisible(false);
-        labelsCorredores[0]=vPrincipalLblCorredor1;
-        labelsCorredores[1]=vPrincipalLblCorredor2;
-        labelsCorredores[2]=vPrincipalLblCorredor3;
-        labelsCorredores[3]=vPrincipalLblCorredor4;
-        labelsCorredores[4]=vPrincipalLblCorredor5;
+        labelsCorredores[0] = vPrincipalLblCorredor1;
+        labelsCorredores[1] = vPrincipalLblCorredor2;
+        labelsCorredores[2] = vPrincipalLblCorredor3;
+        labelsCorredores[3] = vPrincipalLblCorredor4;
+        labelsCorredores[4] = vPrincipalLblCorredor5;
         labelsCorredores[1].setVisible(false);
         labelsCorredores[2].setVisible(false);
         labelsCorredores[3].setVisible(false);
         labelsCorredores[4].setVisible(false);
-
-       
     }
-    
-    
+
+    /**
+     * Actualiza la posición visual de un corredor específico en la pista. Mueve
+     * el label del corredor a las nuevas coordenadas y lo repinta para reflejar
+     * el cambio en la interfaz.
+     *
+     * @param numero el número identificador del corredor a reposicionar
+     * @param posicionX la nueva coordenada horizontal del corredor
+     * @param posicionY la nueva coordenada vertical del corredor
+     */
     public void repintarLabel(int numero, int posicionX, int posicionY) {
-        labelsCorredores[numero].setLocation(posicionX,posicionY);
+        labelsCorredores[numero].setLocation(posicionX, posicionY);
         labelsCorredores[numero].repaint();
     }
+
+    /**
+     * Hace visible el label de un corredor específico en la pista. Utilizado
+     * cuando se agrega un nuevo corredor a la carrera.
+     *
+     * @param numero el número identificador del corredor a mostrar
+     */
     public void mostrarJugador(int numero) {
         labelsCorredores[numero].setVisible(true);
     }
-    public void ocultarPanelGanador(){
+
+    /**
+     * Oculta el panel que muestra el ganador de la carrera. Utilizado para
+     * reiniciar la interfaz antes de comenzar una nueva carrera.
+     */
+    public void ocultarPanelGanador() {
         this.vPrincipalLblGanador.setVisible(false);
-        
-        
     }
-    public void mostrarGanador(String msj){
+
+    /**
+     * Muestra el panel del ganador con el mensaje especificado. Hace visible el
+     * label del ganador y actualiza su texto con el mensaje proporcionado.
+     *
+     * @param msj el mensaje que se mostrará indicando quién ganó la carrera
+     */
+    public void mostrarGanador(String msj) {
         this.vPrincipalLblGanador.setVisible(true);
         this.vPrincipalLblGanador.setText(msj);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
